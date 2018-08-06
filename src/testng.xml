@@ -1,0 +1,20 @@
+
+
+<suite name = "Smoke_DependTest">
+    <test name = "DemoTest" preserve-order="true">
+     
+      <classes>
+     
+       <class name = "testScriptsRepo.CreateAccountTest" />
+        <class name = "testScriptsRepo.SignInPageTest" />
+                  
+         
+     </classes>
+     
+     
+      
+     
+      
+      
+   </test> 
+</suite>
