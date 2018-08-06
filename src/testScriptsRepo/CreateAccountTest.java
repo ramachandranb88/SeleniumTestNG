@@ -29,7 +29,7 @@ public class CreateAccountTest  {
 	//@BeforeMethod
 	//@BeforeMethod
 	@BeforeClass
-	public void setUp()
+	public void setUp() throws FileNotFoundException, IOException
 	{
 		DriverClass.getDriver();
 	}

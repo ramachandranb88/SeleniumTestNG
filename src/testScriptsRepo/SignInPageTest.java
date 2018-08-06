@@ -36,7 +36,7 @@ public class SignInPageTest  {
 	//@BeforeMethod  - Can be called when new driver needs to be initialized for every test cases
 	//@BeforeMethod
 	@BeforeClass
-	public void setUp()
+	public void setUp() throws FileNotFoundException, IOException
 	{
 		DriverClass.getDriver();
 	}

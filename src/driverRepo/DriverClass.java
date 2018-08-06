@@ -11,11 +11,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
@@ -47,6 +49,14 @@ public class DriverClass
 	public static String outPutReportsPath = "";
 	public static String TestName;
 	
+	public  String driverPath;
+	public  String browser;
+	
+	
+	
+	public static Properties property = new Properties();
+
+	
 	
 	public int getTestCaseID()
 	{
@@ -62,11 +72,26 @@ public class DriverClass
 		this.TestName = TestName ;
 	} 
 	
-	public static void getDriver()
+	public static void getDriver() throws FileNotFoundException, IOException
 	{
-		//Set local relative path of respective driver
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\balasubramanir\\eclipse-workspace\\ExternalJars\\chromedriver_win32\\chromedriver.exe");
-		driver = new ChromeDriver();
+
+		property.load(new FileInputStream("C:\\Users\\balasubramanir\\eclipse-workspace\\Selenium-TestNG\\src\\settings.properties"));
+		switch(property.getProperty("browser").toLowerCase())
+		{
+		case "chrome":
+					System.setProperty("webdriver.chrome.driver", property.getProperty("chromdriver_Path"));
+					driver = new ChromeDriver();
+		 			break;
+		case "firefox":
+			       System.setProperty("webdriver.gecko.driver", property.getProperty("geckodriver_Path"));
+			       driver = new FirefoxDriver();
+			       break;
+		case "internet explorer":
+			      System.setProperty("webdriver.ie.driver", property.getProperty("iedriver_Path"));
+			      driver = new InternetExplorerDriver();
+			      break;
+			
+		}
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
